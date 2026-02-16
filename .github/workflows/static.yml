@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pentru Simona - Cu Dragoste de la Răzvan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+/* ===== CSS Variables - Lovely Pink Theme ===== */
+:root {
+    /* Pink/Romantic Color Palette */
+    --color-bg: #FFF0F5;
+    --color-bg-alt: #FFE4EC;
+    --color-primary: #FF85A2;
+    --color-primary-dark: #FF6B8A;
+    --color-primary-light: #FFB3C6;
+    --color-accent: #FFC2D1;
+    --color-accent-light: #FFE0E6;
+    --color-text: #8B4A5E;
+    --color-text-light: #B76E84;
+    --color-white: #FFFFFF;
+    --color-shadow: rgba(255, 107, 138, 0.15);
+    --color-overlay: rgba(74, 40, 50, 0.96);
+    --color-heart: #FF6B8A;
+    --color-heart-light: #FFB3C6;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 12px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 50%;
+}
+
+/* Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #2D1F24;
+        --color-bg-alt: #3D2A32;
+        --color-primary: #FF85A2;
+        --color-primary-dark: #FF6B8A;
+        --color-primary-light: #FFB3C6;
+        --color-accent: #8B4A5E;
+        --color-accent-light: #5A3A44;
+        --color-text: #FFE4EC;
+        --color-text-light: #FFB3C6;
+        --color-white: #3D2A32;
+        --color-shadow: rgba(0, 0, 0, 0.4);
+        --color-overlay: rgba(45, 31, 36, 0.98);
+        --color-heart: #FF85A2;
+        --color-heart-light: #FF6B8A;
+    }
+}
+
+/* ===== Reset & Base Styles ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 50%, var(--color-bg) 100%);
+    background-attachment: fixed;
+    color: var(--color-text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+}
+
+/* ===== Floating Hearts Animation ===== */
+.floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.3;
+    animation: float-up 8s ease-in-out infinite;
+}
+
+.heart:nth-child(1) { left: 10%; animation-delay: 0s; font-size: 2rem; }
+.heart:nth-child(2) { left: 25%; animation-delay: 1s; font-size: 1.2rem; }
+.heart:nth-child(3) { left: 40%; animation-delay: 2s; font-size: 1.8rem; }
+.heart:nth-child(4) { left: 60%; animation-delay: 3s; font-size: 1.4rem; }
+.heart:nth-child(5) { left: 75%; animation-delay: 4s; font-size: 2.2rem; }
+.heart:nth-child(6) { left: 90%; animation-delay: 5s; font-size: 1.6rem; }
+
+@keyframes float-up {
+    0%, 100% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== Password Overlay ===== */
+.password-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent-light) 50%, var(--color-bg-alt) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+.password-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.password-container {
+    text-align: center;
+    padding: var(--spacing-xl);
+    max-width: 450px;
+    width: 90%;
+    animation: fadeInUp 0.8s ease;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px var(--color-shadow);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.password-heart {
+    font-size: 5rem;
+    margin-bottom: var(--spacing-md);
+    animation: heartbeat 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px var(--color-shadow));
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.15); }
+}
+
+.password-container h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: var(--color-primary-dark);
+    margin-bottom: var(--spacing-xs);
+    text-shadow: 2px 2px 4px var(--color-shadow);
+}
+
+.password-subtitle {
+    color: var(--color-text);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-xs);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+.password-hint {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.password-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.password-form input {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    text-align: center;
+    letter-spacing: 0.1em;
+    background: var(--color-white);
+    color: var(--color-text);
+    transition: all var(--transition-fast);
+}
+
+.password-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(255, 133, 162, 0.2);
+    transform: scale(1.02);
+}
+
+.password-form button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 15px rgba(255, 107, 138, 0.4);
+}
+
+.password-form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 138, 0.5);
+}
+
+.password-error {
+    color: #E74C3C;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    margin-top: var(--spacing-xs);
+}
+
+.password-error.visible {
+    opacity: 1;
+}
+
+/* ===== Main Content ===== */
+.main-content {
+    opacity: 1;
+    transition: opacity var(--transition-slow);
+}
+
+.main-content.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===== Header ===== */
+.header {
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 179, 198, 0.2) 0%, transparent 70%);
+    animation: pulse-bg 4s ease-in-out infinite;
+}
+
+@keyframes pulse-bg {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+}
+
+.header-hearts {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.site-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--color-primary-dark);
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: -0.02em;
+    text-shadow: 2px 2px 8px var(--color-shadow);
+}
+
+.site-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-text);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: var(--spacing-xs);
+}
+
+.site-author {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--color-text-light);
+}
+
+/* ===== Filter Bar ===== */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    position: sticky;
+    top: 0;
+    background: rgba(255, 240, 245, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    box-shadow: 0 2px 20px var(--color-shadow);
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.filter-btn {
+    padding: 0.7rem 1.5rem;
+    border: 2px solid var(--color-accent);
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--color-text);
+    border-radius: var(--radius-full);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+}
+
+.filter-btn:hover {
+    background: var(--color-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 107, 138, 0.4);
+}
+
+/* ===== Gallery Container ===== */
+.gallery-container {
+    padding: var(--spacing-md);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===== Masonry Grid ===== */
+.masonry-grid {
+    column-count: 1;
+    column-gap: var(--spacing-md);
+}
+
+@media (min-width: 640px) {
+    .masonry-grid {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    .masonry-grid {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 1400px) {
+    .masonry-grid {
+        column-count: 4;
+    }
+}
+
+/* ===== Gallery Item ===== */
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--color-bg-alt);
+    box-shadow: 0 6px 20px var(--color-shadow);
+    transition: all var(--transition-medium);
+    animation: fadeIn 0.6s ease backwards;
+    border: 3px solid white;
+}
+
+.gallery-item:nth-child(1) { animation-delay: 0.05s; }
+.gallery-item:nth-child(2) { animation-delay: 0.1s; }
+.gallery-item:nth-child(3) { animation-delay: 0.15s; }
+.gallery-item:nth-child(4) { animation-delay: 0.2s; }
+.gallery-item:nth-child(5) { animation-delay: 0.25s; }
+.gallery-item:nth-child(6) { animation-delay: 0.3s; }
+.gallery-item:nth-child(7) { animation-delay: 0.35s; }
+.gallery-item:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(255, 107, 138, 0.25);
+    border-color: var(--color-primary-light);
+}
+
+.gallery-item.hidden {
+    display: none;
+}
+
+.gallery-item img,
+.gallery-item video {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition-medium);
+}
+
+.gallery-item:hover img,
+.gallery-item:hover video {
+    transform: scale(1.08);
+}
+
+/* Video indicator */
+.gallery-item.video::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(255, 133, 162, 0.95) 0%, rgba(255, 107, 138, 0.95) 100%);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: white;
+    opacity: 0.9;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item.video:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 8px 25px rgba(255, 107, 138, 0.5);
+}
+
+/* Item overlay with info */
+.gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(139, 74, 94, 0.8) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--spacing-sm);
+}
+
+.gallery-item:hover .gallery-item-overlay {
+    opacity: 1;
+}
+
+.gallery-item-info {
+    color: white;
+    font-size: 0.9rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item-date {
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.gallery-item-tags {
+    opacity: 0.9;
+    font-size: 0.8rem;
+}
+
+/* ===== Lightbox ===== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: var(--color-overlay);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-medium), visibility var(--transition-medium);
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+}
+
+.lightbox-media-container {
+    position: relative;
+    max-width: 90vw;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-media-container img,
+.lightbox-media-container video {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: var(--radius-md);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    border: 4px solid white;
+}
+
+.lightbox-media-container video {
+    background: #000;
+}
+
+/* Lightbox Controls */
+.lightbox-close {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 55px;
+    height: 55px;
+    background: rgba(255, 133, 162, 0.2);
+    border: 2px solid rgba(255, 133, 162, 0.4);
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: 2.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    z-index: 10;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 133, 162, 0.4);
+    transform: rotate(90deg) scale(1.1);
+    border-color: var(--color-primary);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    background: rgba(255, 133, 162, 0.2);
+    border: 2px solid rgba(255, 133, 162, 0.4);
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    z-index: 10;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 133, 162, 0.4);
+    transform: translateY(-50%) scale(1.15);
+    border-color: var(--color-primary);
+}
+
+.lightbox-prev {
+    left: var(--spacing-md);
+}
+
+.lightbox-next {
+    right: var(--spacing-md);
+}
+
+.lightbox-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 90vw;
+    margin-top: var(--spacing-md);
+    padding: 0 var(--spacing-sm);
+}
+
+.lightbox-counter {
+    color: white;
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+.lightbox-download {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: white;
+    text-decoration: none;
+    padding: 0.7rem 1.2rem;
+    background: linear-gradient(135deg, rgba(255, 133, 162, 0.4) 0%, rgba(255, 107, 138, 0.4) 100%);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+    border: 2px solid rgba(255, 133, 162, 0.3);
+}
+
+.lightbox-download:hover {
+    background: linear-gradient(135deg, rgba(255, 133, 162, 0.6) 0%, rgba(255, 107, 138, 0.6) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 107, 138, 0.4);
+}
+
+/* Loading spinner for lightbox */
+.lightbox-loading {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== Footer ===== */
+.footer {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    color: var(--color-text);
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+}
+
+.footer-hearts {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-sm);
+    animation: pulse-hearts 2s ease-in-out infinite;
+}
+
+@keyframes pulse-hearts {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+.footer p {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer-quote {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: var(--color-primary-dark);
+    margin-top: var(--spacing-sm);
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+    .password-container h1 {
+        font-size: 2.5rem;
+    }
+    
+    .password-container {
+        padding: var(--spacing-lg);
+    }
+    
+    .site-title {
+        font-size: 2.5rem;
+    }
+    
+    .site-author {
+        font-size: 1.2rem;
+    }
+    
+    .filter-bar {
+        gap: 0.5rem;
+        padding: var(--spacing-sm);
+    }
+    
+    .filter-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .gallery-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .masonry-grid {
+        column-gap: var(--spacing-sm);
+    }
+    
+    .gallery-item {
+        margin-bottom: var(--spacing-sm);
+        border-width: 2px;
+    }
+    
+    .lightbox-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .lightbox-prev {
+        left: var(--spacing-sm);
+    }
+    
+    .lightbox-next {
+        right: var(--spacing-sm);
+    }
+    
+    .lightbox-content {
+        padding: var(--spacing-md);
+    }
+    
+    .footer-quote {
+        font-size: 1.3rem;
+    }
+}
+
+/* ===== Touch Device Optimizations ===== */
+@media (hover: none) {
+    .gallery-item:hover {
+        transform: none;
+    }
+    
+    .gallery-item-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(139, 74, 94, 0.7) 0%, transparent 50%);
+    }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .floating-hearts,
+    .heart {
+        display: none;
+    }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    .password-overlay,
+    .filter-bar,
+    .lightbox,
+    .footer,
+    .floating-hearts {
+        display: none !important;
+    }
+    
+    .main-content {
+        opacity: 1 !important;
+    }
+    
+    .gallery-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay" class="password-overlay">
+        <div class="floating-hearts">
+            <span class="heart">💕</span>
+            <span class="heart">💖</span>
+            <span class="heart">💗</span>
+            <span class="heart">💝</span>
+            <span class="heart">💘</span>
+            <span class="heart">💓</span>
+        </div>
+        <div class="password-container">
+            <div class="password-heart">💕</div>
+            <h1>Pentru Simona</h1>
+            <p class="password-subtitle">Cu dragoste infinită de la Răzvan</p>
+            <p class="password-hint">O colecție a momentelor noastre speciale împreună</p>
+            <div class="password-form">
+                <input 
+                    type="password" 
+                    id="password-input" 
+                    placeholder="Introdu codul secret" 
+                    autocomplete="off"
+                >
+                <button id="password-submit">Intră în Galerie</button>
+                <p id="password-error" class="password-error">Cod greșit. Încearcă din nou, draga mea.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until password is correct) -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-hearts">💕 💖 💗</div>
+                <h1 class="site-title">Pentru Simona</h1>
+                <p class="site-subtitle">Fiecare moment cu tine este o comoară prețioasă</p>
+                <p class="site-author">~ Cu dragoste, Răzvan ~</p>
+            </div>
+        </header>
+
+        <!-- Filter Bar -->
+        <nav class="filter-bar">
+            <button class="filter-btn active" data-filter="all">Toate</button>
+            <button class="filter-btn" data-filter="photos">Poze</button>
+            <button class="filter-btn" data-filter="videos">Videoclipuri</button>
+        </nav>
+
+        <!-- Gallery Grid -->
+        <main class="gallery-container">
+            <div id="gallery" class="masonry-grid">
+                <!-- Gallery items will be dynamically inserted here -->
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-hearts">💕 💖 💗 💝 💘</div>
+            <p>Făcut cu 💕 pentru noi doi</p>
+            <p class="footer-quote">"Te iubesc mai mult cu fiecare zi care trece"</p>
+        </footer>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" aria-label="Închide">&times;</button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Anterior">&#10094;</button>
+        <button class="lightbox-nav lightbox-next" aria-label="Următorul">&#10095;</button>
+        
+        <div class="lightbox-content">
+            <div id="lightbox-media-container" class="lightbox-media-container">
+                <!-- Media will be inserted here -->
+            </div>
+            <div class="lightbox-info">
+                <p id="lightbox-counter" class="lightbox-counter"></p>
+                <a id="lightbox-download" class="lightbox-download" download>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Descarcă
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+/**
+ * Pentru Simona - Galerie Media Personală
+ * De la Răzvan cu dragoste 💕
+ * 
+ * Features: Protecție parolă, Grid Masonry, Lightbox, Filtrare
+ */
+
+// ===== Configurare =====
+const CONFIG = {
+    PAROLA: 'iubire', // Schimbă aici parola dorită
+    ANIMATION_STAGGER: 50,
+};
+
+// ===== Date Media =====
+const mediaItems = [
+    // Poze
+    { id: 1, type: 'image', src: 'media/062B4ADA-271B-454C-B25B-023C1BAF8E49.JPG', title: 'Moment Special 1' },
+    { id: 2, type: 'image', src: 'media/077EED34-93B6-4E9A-A98B-E992F0082C49.JPG', title: 'Moment Special 2' },
+    { id: 3, type: 'image', src: 'media/104F78FF-1852-4937-92AD-3692D3262CC2.JPG', title: 'Moment Special 3' },
+    { id: 4, type: 'image', src: 'media/12878808-9F54-4E55-B915-04BF3180711D.JPG', title: 'Moment Special 4' },
+    { id: 5, type: 'image', src: 'media/216A803E-D4A4-4ED9-AE90-EDE5FBE0531C.JPG', title: 'Moment Special 5' },
+    { id: 6, type: 'image', src: 'media/497D6D30-F303-4CF7-B6D7-0099A53ABFDA.JPG', title: 'Moment Special 6' },
+    { id: 7, type: 'image', src: 'media/6536E254-F722-40CD-858E-F7538C2B740D.JPG', title: 'Moment Special 7' },
+    { id: 8, type: 'image', src: 'media/6A6AE1D7-6CDB-4B68-B836-0B7DF9B17A6D.JPG', title: 'Moment Special 8' },
+    { id: 9, type: 'image', src: 'media/6CF6BE95-FEFB-4C93-8752-E7722F559410.JPG', title: 'Moment Special 9' },
+    { id: 10, type: 'image', src: 'media/6DFEFF02-88D2-410C-9B73-1C8B11556526.JPG', title: 'Moment Special 10' },
+    { id: 11, type: 'image', src: 'media/70C82FA3-3219-4573-90BA-2E7A204F3D32.JPG', title: 'Moment Special 11' },
+    { id: 12, type: 'image', src: 'media/7318B7BA-3166-4C68-8B74-763BFEAD7D4F.JPG', title: 'Moment Special 12' },
+    { id: 13, type: 'image', src: 'media/7692EEAF-1C64-40C0-BF3C-1E1FD65DE682.JPG', title: 'Moment Special 13' },
+    { id: 14, type: 'image', src: 'media/7A978ED3-7F3A-4D51-B05D-A33BF783C0F4.JPG', title: 'Moment Special 14' },
+    { id: 15, type: 'image', src: 'media/7B7B8D54-4B87-4F52-8578-3D89C29DFDEB.JPG', title: 'Moment Special 15' },
+    { id: 16, type: 'image', src: 'media/7FEE180C-BE6F-474E-8740-EFFC6C1CC355.JPG', title: 'Moment Special 16' },
+    { id: 17, type: 'image', src: 'media/821CAFC7-27C4-44B4-9679-891405FE1268.JPG', title: 'Moment Special 17' },
+    { id: 18, type: 'image', src: 'media/950C856D-C0CE-47FD-B226-B6B5742EDD10.JPG', title: 'Moment Special 18' },
+    { id: 19, type: 'image', src: 'media/9A70CBA4-0D95-42F0-B0AD-5295ECD8652D.JPG', title: 'Moment Special 19' },
+    { id: 20, type: 'image', src: 'media/9FDEE740-18A4-4DBD-98A1-B6F41647933F.JPG', title: 'Moment Special 20' },
+    { id: 21, type: 'image', src: 'media/AB10DF41-0D44-4389-82ED-96AD8D0041A4.JPG', title: 'Moment Special 21' },
+    { id: 22, type: 'image', src: 'media/ACD6730B-E2CD-45CC-AF4E-816F6D9BB4F4.JPG', title: 'Moment Special 22' },
+    { id: 23, type: 'image', src: 'media/CF504073-6EEE-4476-BE72-6875078CC167.JPG', title: 'Moment Special 23' },
+    { id: 24, type: 'image', src: 'media/D18E790E-7E86-4F1D-8A85-476ACBEEB2D5.JPG', title: 'Moment Special 24' },
+    { id: 25, type: 'image', src: 'media/D4C4804B-CDE0-48BD-8A0E-A82ED6EEB559.JPG', title: 'Moment Special 25' },
+    { id: 26, type: 'image', src: 'media/E33B0914-38A6-4CF0-9362-2E5206418BCA.JPG', title: 'Moment Special 26' },
+    { id: 27, type: 'image', src: 'media/E94065C9-1654-4EA5-8D4F-678DC621CC40.JPG', title: 'Moment Special 27' },
+    { id: 28, type: 'image', src: 'media/EB7FF2F9-5C97-488E-847D-7A9B015ACDE1.JPG', title: 'Moment Special 28' },
+    { id: 29, type: 'image', src: 'media/IMG_1003.PNG', title: 'Moment Special 29' },
+    { id: 30, type: 'image', src: 'media/IMG_1200.PNG', title: 'Moment Special 30' },
+    { id: 31, type: 'image', src: 'media/IMG_1244.PNG', title: 'Moment Special 31' },
+    { id: 32, type: 'image', src: 'media/IMG_1245.PNG', title: 'Moment Special 32' },
+    { id: 33, type: 'image', src: 'media/IMG_9287.jpeg', title: 'Moment Special 33' },
+    { id: 34, type: 'image', src: 'media/IMG_9791.PNG', title: 'Moment Special 34' },
+    { id: 35, type: 'image', src: 'media/IMG_9992.PNG', title: 'Moment Special 35' },
+    { id: 38, type: 'image', src: 'media/WhatsApp Image 2026-02-16 at 2.43.48 PM.jpeg', title: 'Moment Special 38' },
+    { id: 39, type: 'image', src: 'media/WhatsApp Image 2026-02-16 at 2.43.51 PM.jpeg', title: 'Moment Special 39' },
+    
+    // Videoclipuri
+    { id: 40, type: 'video', src: 'media/04d43c42124f4ae198f295c600253186.MOV', title: 'Video Special 1' },
+    { id: 41, type: 'video', src: 'media/074309d034f64045a909f7809c212371.MOV', title: 'Video Special 2' },
+    { id: 42, type: 'video', src: 'media/0e86ee55b7eb44bebd1400c1424e6e02.MOV', title: 'Video Special 3' },
+    { id: 43, type: 'video', src: 'media/17d5e18e606644998cf1e50c6c03b1ea.MOV', title: 'Video Special 4' },
+    { id: 44, type: 'video', src: 'media/1a2645a38b0c405b9597a389d4d993c3.MOV', title: 'Video Special 5' },
+    { id: 45, type: 'video', src: 'media/1a83bdab28d74f909ee9590be2a15135.MOV', title: 'Video Special 6' },
+    { id: 46, type: 'video', src: 'media/23ab7998547d4063954133fce18da286.MOV', title: 'Video Special 7' },
+    { id: 47, type: 'video', src: 'media/61200846ec8c4f4ba04e5f5cfdad10ed.MOV', title: 'Video Special 8' },
+    { id: 48, type: 'video', src: 'media/6c986713947441f1be90e59c035b0a17.MOV', title: 'Video Special 9' },
+    { id: 49, type: 'video', src: 'media/7a2c240b4f124aa482d30a2b55bff113.MOV', title: 'Video Special 10' },
+    { id: 50, type: 'video', src: 'media/7bd3eb1805a941b9875c532476311ec6.MOV', title: 'Video Special 11' },
+    { id: 51, type: 'video', src: 'media/97e69deecc724144a70d5f2f3637e2e4.MOV', title: 'Video Special 12' },
+    { id: 52, type: 'video', src: 'media/b53b92a666184250a8c61abad892d6bc.MOV', title: 'Video Special 13' },
+    { id: 53, type: 'video', src: 'media/b593c06484bb48e4b0c4976ba7b36fc3.MOV', title: 'Video Special 14' },
+    { id: 54, type: 'video', src: 'media/b85450e5eecc4fec8df9b58e99fb95dc.MOV', title: 'Video Special 15' },
+    { id: 55, type: 'video', src: 'media/b8c79141775343d68d493467098cce0d.MOV', title: 'Video Special 16' },
+    { id: 56, type: 'video', src: 'media/b8fde9ce169d4ec1995ab09932199bca.MOV', title: 'Video Special 17' },
+    { id: 57, type: 'video', src: 'media/be994359dd2b4d9f842584f61de32f0d.MOV', title: 'Video Special 18' },
+    { id: 58, type: 'video', src: 'media/d6414406504d49e592cc49295eb02a65.MOV', title: 'Video Special 19' },
+    { id: 59, type: 'video', src: 'media/ecec9c7f86cf4c0abe6687ec32532282.MOV', title: 'Video Special 20' },
+    { id: 60, type: 'video', src: 'media/f4ba093faf14499592b53d3d9fd6566d.MOV', title: 'Video Special 21' },
+    { id: 61, type: 'video', src: 'media/IMG_9610.MOV', title: 'Video Special 22' },
+    { id: 60, type: 'video', src: 'media/WhatsApp Video 2026-02-16 at 2.43.11 PM.mp4', title: 'Video Special 20' },
+    { id: 61, type: 'video', src: 'media/WhatsApp Video 2026-02-16 at 2.43.47 PM.mp4', title: 'Video Special 21' },
+    { id: 62, type: 'video', src: 'media/WhatsApp Video 2026-02-16 at 2.43.48 PM.mp4', title: 'Video Special 22' },
+    { id: 63, type: 'video', src: 'media/WhatsApp Video 2026-02-16 at 2.43.49 PM.mp4', title: 'Video Special 23' },
+    { id: 64, type: 'video', src: 'media/WhatsApp Video 2026-02-16 at 2.43.50 PM.mp4', title: 'Video Special 24' },
+    { id: 65, type: 'video', src: 'media/WhatsApp Video 2026-02-16 at 22222.43.49 PM.mp4', title: 'Video Special 25' },
+];
+
+// ===== Gestionare Stare =====
+const state = {
+    currentFilter: 'all',
+    filteredItems: [],
+    currentIndex: 0,
+    isLightboxOpen: false,
+    videoElements: [],
+};
+
+// ===== Elemente DOM =====
+const elements = {
+    passwordOverlay: document.getElementById('password-overlay'),
+    passwordInput: document.getElementById('password-input'),
+    passwordSubmit: document.getElementById('password-submit'),
+    passwordError: document.getElementById('password-error'),
+    mainContent: document.getElementById('main-content'),
+    gallery: document.getElementById('gallery'),
+    filterButtons: document.querySelectorAll('.filter-btn'),
+    lightbox: document.getElementById('lightbox'),
+    lightboxMediaContainer: document.getElementById('lightbox-media-container'),
+    lightboxCounter: document.getElementById('lightbox-counter'),
+    lightboxDownload: document.getElementById('lightbox-download'),
+    lightboxClose: document.querySelector('.lightbox-close'),
+    lightboxPrev: document.querySelector('.lightbox-prev'),
+    lightboxNext: document.querySelector('.lightbox-next'),
+};
+
+// ===== Protecție Parolă =====
+function initPasswordProtection() {
+    if (sessionStorage.getItem('galleryAuthenticated') === 'true') {
+        unlockGallery();
+        return;
+    }
+
+    elements.passwordSubmit.addEventListener('click', checkPassword);
+    elements.passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkPassword();
+    });
+    elements.passwordInput.focus();
+}
+
+function checkPassword() {
+    const input = elements.passwordInput.value.trim().toLowerCase();
+    
+    if (input === CONFIG.PAROLA) {
+        sessionStorage.setItem('galleryAuthenticated', 'true');
+        unlockGallery();
+    } else {
+        elements.passwordError.classList.add('visible');
+        elements.passwordInput.value = '';
+        elements.passwordInput.focus();
+        
+        elements.passwordInput.style.animation = 'none';
+        setTimeout(() => {
+            elements.passwordInput.style.animation = 'shake 0.5s ease';
+        }, 10);
+    }
+}
+
+function unlockGallery() {
+    elements.passwordOverlay.classList.add('hidden');
+    elements.mainContent.classList.remove('hidden');
+    
+    setTimeout(() => {
+        initGallery();
+    }, 300);
+}
+
+// Adaugă animație shake
+const shakeStyle = document.createElement('style');
+shakeStyle.textContent = `
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        75% { transform: translateX(10px); }
+    }
+`;
+document.head.appendChild(shakeStyle);
+
+// ===== Funcții Galerie =====
+function initGallery() {
+    renderGallery();
+    initFilters();
+    initLightbox();
+    initIntersectionObserver();
+}
+
+function renderGallery() {
+    elements.gallery.innerHTML = '';
+    state.filteredItems = [...mediaItems];
+    
+    mediaItems.forEach((item, index) => {
+        const galleryItem = createGalleryItem(item, index);
+        elements.gallery.appendChild(galleryItem);
+    });
+}
+
+function createGalleryItem(item, index) {
+    const div = document.createElement('div');
+    div.className = `gallery-item ${item.type === 'video' ? 'video' : ''}`;
+    div.dataset.id = item.id;
+    div.dataset.type = item.type;
+    div.dataset.index = index;
+    div.style.animationDelay = `${index * 0.05}s`;
+    
+    let mediaElement;
+    
+    if (item.type === 'image') {
+        mediaElement = document.createElement('img');
+        mediaElement.src = item.src;
+        mediaElement.alt = item.title;
+        mediaElement.loading = 'lazy';
+    } else {
+        mediaElement = document.createElement('video');
+        mediaElement.src = item.src;
+        mediaElement.muted = true;
+        mediaElement.loop = true;
+        mediaElement.playsInline = true;
+        mediaElement.preload = 'metadata';
+        
+        div.addEventListener('mouseenter', () => {
+            mediaElement.play().catch(() => {});
+        });
+        div.addEventListener('mouseleave', () => {
+            mediaElement.pause();
+            mediaElement.currentTime = 0;
+        });
+        
+        state.videoElements.push({ element: mediaElement, container: div });
+    }
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'gallery-item-overlay';
+    overlay.innerHTML = `
+        <div class="gallery-item-info">
+            <div class="gallery-item-date">${item.type === 'video' ? '🎬 Video' : '📷 Poza'}</div>
+            <div class="gallery-item-tags">${item.title}</div>
+        </div>
+    `;
+    
+    div.appendChild(mediaElement);
+    div.appendChild(overlay);
+    
+    div.addEventListener('click', () => openLightbox(index));
+    
+    return div;
+}
+
+// ===== Intersection Observer =====
+function initIntersectionObserver() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const { element } = state.videoElements.find(
+                v => v.container === entry.target
+            ) || {};
+            
+            if (element) {
+                if (entry.isIntersecting) {
+                    // Nu autoplay automat, doar pe hover
+                } else {
+                    element.pause();
+                    element.currentTime = 0;
+                }
+            }
+        });
+    }, {
+        threshold: 0.5,
+    });
+    
+    state.videoElements.forEach(({ container }) => {
+        observer.observe(container);
+    });
+}
+
+// ===== Funcții Filtrare =====
+function initFilters() {
+    elements.filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            elements.filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filter = btn.dataset.filter;
+            applyFilter(filter);
+        });
+    });
+}
+
+function applyFilter(filter) {
+    state.currentFilter = filter;
+    
+    const items = elements.gallery.querySelectorAll('.gallery-item');
+    
+    items.forEach((item, index) => {
+        const type = item.dataset.type;
+        
+        let shouldShow = false;
+        if (filter === 'all') {
+            shouldShow = true;
+        } else if (filter === 'photos') {
+            shouldShow = type === 'image';
+        } else if (filter === 'videos') {
+            shouldShow = type === 'video';
+        }
+        
+        if (shouldShow) {
+            item.classList.remove('hidden');
+            item.style.animationDelay = `${index * 0.03}s`;
+        } else {
+            item.classList.add('hidden');
+        }
+    });
+    
+    // Update filtered items pentru lightbox
+    state.filteredItems = mediaItems.filter(item => {
+        if (filter === 'all') return true;
+        if (filter === 'photos') return item.type === 'image';
+        if (filter === 'videos') return item.type === 'video';
+        return true;
+    });
+}
+
+// ===== Funcții Lightbox =====
+function initLightbox() {
+    elements.lightboxClose.addEventListener('click', closeLightbox);
+    elements.lightbox.addEventListener('click', (e) => {
+        if (e.target === elements.lightbox) closeLightbox();
+    });
+    
+    elements.lightboxPrev.addEventListener('click', showPrevious);
+    elements.lightboxNext.addEventListener('click', showNext);
+    
+    document.addEventListener('keydown', handleKeyboard);
+    
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    elements.lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    elements.lightbox.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe(touchStartX, touchEndX);
+    }, { passive: true });
+}
+
+function openLightbox(index) {
+    const item = mediaItems[index];
+    const filteredIndex = state.filteredItems.findIndex(i => i.id === item.id);
+    
+    if (filteredIndex === -1) return;
+    
+    state.currentIndex = filteredIndex;
+    state.isLightboxOpen = true;
+    
+    loadLightboxMedia(state.filteredItems[state.currentIndex]);
+    elements.lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    state.isLightboxOpen = false;
+    elements.lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    const video = elements.lightboxMediaContainer.querySelector('video');
+    if (video) {
+        video.pause();
+        video.src = '';
+    }
+    
+    elements.lightboxMediaContainer.innerHTML = '';
+}
+
+function loadLightboxMedia(item) {
+    elements.lightboxMediaContainer.innerHTML = '';
+    
+    const spinner = document.createElement('div');
+    spinner.className = 'lightbox-loading';
+    elements.lightboxMediaContainer.appendChild(spinner);
+    
+    if (item.type === 'image') {
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.title;
+        
+        img.onload = () => {
+            spinner.remove();
+            elements.lightboxMediaContainer.appendChild(img);
+        };
+        
+        img.onerror = () => {
+            spinner.remove();
+            elements.lightboxMediaContainer.innerHTML = '<p style="color: white;">Eroare la încărcarea imaginii</p>';
+        };
+    } else {
+        const video = document.createElement('video');
+        video.src = item.src;
+        video.controls = true;
+        video.autoplay = true;
+        video.loop = false;
+        
+        video.onloadeddata = () => {
+            spinner.remove();
+            elements.lightboxMediaContainer.appendChild(video);
+            video.play().catch(() => {});
+        };
+        
+        video.onerror = () => {
+            spinner.remove();
+            elements.lightboxMediaContainer.innerHTML = '<p style="color: white;">Eroare la încărcarea videoclipului</p>';
+        };
+    }
+    
+    elements.lightboxCounter.textContent = `${state.currentIndex + 1} / ${state.filteredItems.length}`;
+    elements.lightboxDownload.href = item.src;
+    elements.lightboxDownload.download = item.src.split('/').pop() || `amintire-${item.id}`;
+}
+
+function showPrevious() {
+    state.currentIndex = (state.currentIndex - 1 + state.filteredItems.length) % state.filteredItems.length;
+    loadLightboxMedia(state.filteredItems[state.currentIndex]);
+}
+
+function showNext() {
+    state.currentIndex = (state.currentIndex + 1) % state.filteredItems.length;
+    loadLightboxMedia(state.filteredItems[state.currentIndex]);
+}
+
+function handleKeyboard(e) {
+    if (!state.isLightboxOpen) return;
+    
+    switch (e.key) {
+        case 'Escape':
+            closeLightbox();
+            break;
+        case 'ArrowLeft':
+            showPrevious();
+            break;
+        case 'ArrowRight':
+            showNext();
+            break;
+    }
+}
+
+function handleSwipe(startX, endX) {
+    const threshold = 50;
+    const diff = startX - endX;
+    
+    if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+            showNext();
+        } else {
+            showPrevious();
+        }
+    }
+}
+
+// ===== Inițializare =====
+document.addEventListener('DOMContentLoaded', () => {
+    initPasswordProtection();
+});
+    </script>
+</body>
+</html>
