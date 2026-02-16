@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pentru Simona - Cu Dragoste de la Răzvan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay" class="password-overlay">
+        <div class="floating-hearts">
+            <span class="heart">💕</span>
+            <span class="heart">💖</span>
+            <span class="heart">💗</span>
+            <span class="heart">💝</span>
+            <span class="heart">💘</span>
+            <span class="heart">💓</span>
+        </div>
+        <div class="password-container">
+            <div class="password-heart">💕</div>
+            <h1>Pentru Simona</h1>
+            <p class="password-subtitle">Cu dragoste de la Răzvan</p>
+            <p class="password-hint">O colecție a momentelor noastre speciale împreună</p>
+            <div class="password-form">
+                <input 
+                    type="password" 
+                    id="password-input" 
+                    placeholder="Introdu codul secret" 
+                    autocomplete="off"
+                >
+                <button id="password-submit">Intră în Galerie</button>
+                <p id="password-error" class="password-error">Cod greșit. Încearcă din nou, draga mea.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until password is correct) -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-hearts">💕 💖 💗</div>
+                <h1 class="site-title">Pentru Simona</h1>
+                <p class="site-subtitle">Fiecare moment cu tine este o comoară prețioasă</p>
+                <p class="site-author">~ Cu dragoste, Răzvan ~</p>
+            </div>
+        </header>
+
+        <!-- Filter Bar -->
+        <nav class="filter-bar">
+            <button class="filter-btn active" data-filter="all">Toate</button>
+            <button class="filter-btn" data-filter="photos">Poze</button>
+            <button class="filter-btn" data-filter="videos">Videoclipuri</button>
+        </nav>
+
+        <!-- Gallery Grid -->
+        <main class="gallery-container">
+            <div id="gallery" class="masonry-grid">
+                <!-- Gallery items will be dynamically inserted here -->
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-hearts">💕 💖 💗 💝 💘</div>
+            <p>Făcut cu 💕 pentru noi doi</p>
+            <p class="footer-quote">"Te iubesc mai mult cu fiecare zi care trece"</p>
+        </footer>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" aria-label="Închide">&times;</button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Anterior">&#10094;</button>
+        <button class="lightbox-nav lightbox-next" aria-label="Următorul">&#10095;</button>
+        
+        <div class="lightbox-content">
+            <div id="lightbox-media-container" class="lightbox-media-container">
+                <!-- Media will be inserted here -->
+            </div>
+            <div class="lightbox-info">
+                <p id="lightbox-counter" class="lightbox-counter"></p>
+                <a id="lightbox-download" class="lightbox-download" download>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Descarcă
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
